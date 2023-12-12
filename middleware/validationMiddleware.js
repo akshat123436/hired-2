@@ -64,3 +64,12 @@ export const validateRegisterInput = withValidationErrors([
   body("location").notEmpty().withMessage("Please provide location"),
   body("lastName").notEmpty().withMessage("Please provide lastName"),
 ]);
+
+export const validateLoginInput = withValidationErrors([
+  body("email")
+    .notEmpty()
+    .withMessage("Please provide email")
+    .isEmail()
+    .withMessage("invalid email"),
+  body("password").notEmpty().withMessage("Please provide password"),
+]);
