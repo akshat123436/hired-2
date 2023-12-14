@@ -35,12 +35,12 @@ const router = createBrowserRouter([
         element: <Landing />,
       },
       {
-        path: "/register",
+        path: "register",
         element: <Register></Register>,
         action: registerAction,
       },
       {
-        path: "/dashboard",
+        path: "dashboard",
         element: (
           <DashboardLayout
             isDarkThemeEnabled={isDarkThemeEnabled}
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "/login",
+        path: "login",
         element: <Login></Login>,
         action: loginAction,
       },

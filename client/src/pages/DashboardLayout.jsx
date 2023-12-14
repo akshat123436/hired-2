@@ -53,11 +53,10 @@ function DashboardLayout({ isDarkThemeEnabled }) {
           <SmallSidebar></SmallSidebar>
           <BigSidebar></BigSidebar>
           <div>
-            <Navbar>
-              <div className="dashboard-page">
-                <Outlet context={{ user }} />
-              </div>
-            </Navbar>
+            <Navbar />
+            <div className="dashboard-page">
+              <Outlet context={{ user }} />
+            </div>
           </div>
         </main>
       </Wrapper>
