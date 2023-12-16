@@ -4,6 +4,7 @@ import { useAllJobsContext } from "../pages/AllJobs";
 import Job from "./Job";
 function JobsContainer() {
   const { data } = useAllJobsContext();
+  console.log(data);
   const { jobs } = data;
   if (jobs.length === 0) {
     return (
