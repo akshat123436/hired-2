@@ -9,3 +9,5 @@ export { default as JobsContainer } from "./JobsContainer.jsx";
 export { default as Job } from "./Job.jsx";
 export { default as StatItem } from "./StatItem.jsx";
 export { default as SubmitBtn } from "./SubmitBtn.jsx";
+export { default as StatsContainer } from "./StatsContainer.jsx";
+export { default as ChartsContainer } from "./ChartsContainer.jsx";
