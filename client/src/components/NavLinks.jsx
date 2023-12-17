@@ -16,7 +16,6 @@ function NavLinks({ isBigSidebar }) {
             key={text}
             className="nav-link"
             onClick={isBigSidebar ? null : toggleSidebar}
-            // will discuss in a second
             end
           >
             <span className="icon">{icon}</span>

@@ -11,12 +11,18 @@ import {
   updateUser,
 } from "../controllers/userController.js";
 import { authorizePermissions } from "../middleware/authMiddleware.js";
+import upload from "../middleware/multerMiddleware.js";
 const router = Router();
 
 router.route("/current-user").get(getCurrentUser);
 router
   .route("/admin/app-stats")
   .get([authorizePermissions("admin"), getApplicationStats]);
-router.get("/update-user", validateUpdateUserInput, updateUser);
+router.patch(
+  "/update-user",
+  upload.single("avatar"),
+  validateUpdateUserInput,
+  updateUser
+);
 
 export default router;
