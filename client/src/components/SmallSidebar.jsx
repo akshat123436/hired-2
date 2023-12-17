@@ -7,7 +7,7 @@ import links from "../utils/links";
 import { useDashboardContext } from "../pages/DashboardLayout";
 
 const SmallSidebar = () => {
-  const { showSidebar, toggleSidebar } = useDashboardContext();
+  const { user, showSidebar, toggleSidebar } = useDashboardContext();
 
   return (
     <Wrapper>
@@ -26,14 +26,14 @@ const SmallSidebar = () => {
           <div className="nav-links">
             {links.map((link) => {
               const { text, path, icon } = link;
-
+              const { role } = user;
+              if (path === "admin" && role !== "admin") return;
               return (
                 <NavLink
                   to={path}
                   key={text}
                   className="nav-link"
                   onClick={toggleSidebar}
-                  // will discuss in a second
                   end
                 >
                   <span className="icon">{icon}</span>
