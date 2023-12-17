@@ -7,17 +7,30 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 //routers
 import jobRouter from "./routes/jobRouter.js";
-import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import authRouter from "./routes/authRouter.js";
 import userRouter from "./routes/userRouter.js";
+
+//middlewares
+import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
 import { authenticateUser } from "./middleware/authMiddleware.js";
+
+//public
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+import path from "path";
+
 import cookieParser from "cookie-parser";
+
 const app = express();
-app.use(express.json());
-app.use(cookieParser());
+
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+const __dirname = dirname(fileURLToPath(import.meta.url));
+app.use(express.static(path.resolve(__dirname, "./public")));
+app.use(express.json());
+app.use(cookieParser());
+
 app.get("/api/v1/test", (req, res) => {
   res.json({ msg: "test link" });
 });
@@ -27,7 +40,9 @@ app.use("/api/v1/users", authenticateUser, userRouter);
 app.use("*", (req, res) => {
   res.status(404).json({ msg: "not found" });
 });
+
 app.use(errorHandlerMiddleware);
+
 const port = process.env.PORT || 5100;
 try {
   await mongoose.connect(
