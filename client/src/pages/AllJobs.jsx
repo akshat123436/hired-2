@@ -6,6 +6,7 @@ import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
 import { createContext } from "react";
 export const loader = async () => {
+  console.log("all jobs loader");
   try {
     const { data } = await customFetch.get("/jobs");
     return { data };
