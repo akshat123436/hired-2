@@ -11,7 +11,7 @@ function ChartsContainer({ data }) {
       <button type="button" onClick={() => setBarChart(!barChart)}>
         {barChart ? "Area Chart" : "Bar Chart"}
       </button>
-      {barChart ? <BarChart data={data} /> : <AreaChart />}
+      {barChart ? <BarChart data={data} /> : <AreaChart data={data} />}
     </Wrapper>
   );
 }
