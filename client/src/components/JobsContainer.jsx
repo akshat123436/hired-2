@@ -2,10 +2,11 @@ import React from "react";
 import Wrapper from "../assets/wrappers/JobsContainer.js";
 import { useAllJobsContext } from "../pages/AllJobs";
 import Job from "./Job";
+import PageBtnContainer from "./PageBtnContainer.jsx";
 function JobsContainer() {
   const { data } = useAllJobsContext();
+  const { jobs, totalJobs, numOfPages } = data;
   console.log(data);
-  const { jobs } = data;
   if (jobs.length === 0) {
     return (
       <Wrapper>
@@ -15,11 +16,15 @@ function JobsContainer() {
   }
   return (
     <Wrapper>
+      <h5>
+        {totalJobs} job{jobs.length > 1 && "s"} found
+      </h5>
       <div className="jobs">
         {jobs.map((job) => {
           return <Job key={job._id} {...job}></Job>;
         })}
       </div>
+      {numOfPages > 1 && <PageBtnContainer />}
     </Wrapper>
   );
 }
