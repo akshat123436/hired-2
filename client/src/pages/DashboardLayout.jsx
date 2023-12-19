@@ -10,23 +10,31 @@ import {
 import Wrapper from "../assets/wrappers/Dashboard";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
+import { useQuery } from "@tanstack/react-query";
+
+const userQuery = {
+  queryKey: ["user"],
+  queryFn: async () => {
+    const { data } = await customFetch.get("/users/current-user");
+    return data;
+  },
+};
 
 const DashboardContext = createContext();
 
-export const loader = async () => {
+export const loader = (queryClient) => async () => {
   try {
-    const { data } = await customFetch.get("/users/current-user");
-    return data;
+    return await queryClient.ensureQueryData(userQuery);
   } catch (error) {
     return redirect("/");
   }
 };
 
-function DashboardLayout({ isDarkThemeEnabled }) {
+function DashboardLayout({ isDarkThemeEnabled, queryClient }) {
   const navigate = useNavigate();
   const navigation = useNavigation();
   const isPageLoading = navigation.state === "loading";
-  const { user } = useLoaderData();
+  const { user } = useQuery(userQuery).data;
   const [showSidebar, setShowSidebar] = useState(false);
   const [isDarkTheme, setisDarkTheme] = useState(isDarkThemeEnabled);
 
