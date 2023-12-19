@@ -13,3 +13,4 @@ export { default as StatsContainer } from "./StatsContainer.jsx";
 export { default as ChartsContainer } from "./ChartsContainer.jsx";
 export { default as PageBtnContainer } from "./PageBtnContainer.jsx";
 export { default as Loading } from "./Loading.jsx";
+export { default as ErrorElement } from "./ErrorElement.jsx";

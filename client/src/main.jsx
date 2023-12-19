@@ -8,8 +8,8 @@ import axios from "axios";
 import customFetch from "./utils/customFetch.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <>
     <App />
     <ToastContainer position="top-center"></ToastContainer>
-  </React.StrictMode>
+  </>
 );
